@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-public class NvoIngreso extends AppCompatActivity {
-    private Spinner spinner1;
-    private TextView fechaing;
+public class NvoEgreso extends AppCompatActivity {
+    private Spinner spinner1,spinner2;
+    private TextView fechaeg;
     //Calendario para obtener fecha & hora
     public final Calendar c = Calendar.getInstance();
     final int mes = c.get(Calendar.MONTH);
@@ -23,18 +23,22 @@ public class NvoIngreso extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nvo_ingreso);
+        setContentView(R.layout.activity_nvo_egreso);
         spinner1 = (Spinner) findViewById(R.id.spinner1);
-        fechaing = (TextView) findViewById(R.id.fechaeg);
-        String[] opciones={"Sueldo","Préstamo","Otros"};
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        fechaeg = (TextView) findViewById(R.id.fechaeg);
+        String[] opciones={"Alquiler","Mercados","Transporte","Impuestos","Servicios","Esparcimiento","Otros"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opciones);
         spinner1.setAdapter(adapter);
-}
+        String[] opciones1 = {"Efectivo","Débito","Transferencia","Crédito"};
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,opciones1);
+        spinner2.setAdapter(adapter1);
+    }
     public void cancelarclick(View view){
         finish();
     }
     public void elijefecha(View view){
-    obtenerFecha();
+        obtenerFecha();
     }
     private void obtenerFecha(){
 
@@ -48,7 +52,7 @@ public class NvoIngreso extends AppCompatActivity {
                 //Formateo el mes obtenido: antepone el 0 si son menores de 10
                 String mesFormateado = (mesActual < 10)? "0" + String.valueOf(mesActual):String.valueOf(mesActual);
                 //Muestro la fecha con el formato deseado
-                fechaing.setText(diaFormateado + "/" + mesFormateado + "/" + year);
+                fechaeg.setText(diaFormateado + "/" + mesFormateado + "/" + year);
             }
             //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
             /**

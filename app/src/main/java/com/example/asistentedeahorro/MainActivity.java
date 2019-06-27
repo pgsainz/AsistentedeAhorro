@@ -36,9 +36,12 @@ public class MainActivity extends AppCompatActivity {
     public void nvoIngresoClick(View view){
         Intent i = new Intent(this,NvoIngreso.class);
         startActivity(i);
+        actualizaSaldo(20000);
     }
     public void nvoEngresoClick(View view){
-
+    Intent e = new Intent(this,NvoEgreso.class);
+    startActivity(e);
+    actualizaSaldo(10000);
     }
     public void btnDetalle(View view){
 
