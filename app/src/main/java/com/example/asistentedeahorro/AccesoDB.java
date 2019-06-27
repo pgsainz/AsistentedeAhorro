@@ -13,8 +13,8 @@ public class AccesoDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
     db.execSQL("CREATE TABLE IF NOT EXISTS movimientos (" +
             "idmovimiento INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "  idtipomov TEXT NOT NULL," +
-            "  idconcepto INTEGER DEFAULT NULL," +
+            "  tipomov TEXT NOT NULL," +
+            "  concepto INTEGER DEFAULT NULL," +
             "  fecha TEXT DEFAULT NULL," +
             "  importe REAL DEFAULT NULL)");
 

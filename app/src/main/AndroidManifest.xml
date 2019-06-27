@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NvoEgreso"></activity>
+        <activity android:name=".detalleform"></activity>
+        <activity android:name=".NvoEgreso" />
         <activity android:name=".NvoIngreso" />
         <activity android:name=".MainActivity">
             <intent-filter>
