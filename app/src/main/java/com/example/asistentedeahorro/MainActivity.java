@@ -43,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
     public void btnDetalle(View view){
     Intent d = new Intent(this,DetalleForm.class);
     startActivity(d);
+    actualizaSaldo();
     }
     public void actualizaSaldo(){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro1",null,1);
         SQLiteDatabase bd = admin.getReadableDatabase();
-        Cursor fila = bd.rawQuery("select sum(importe) as saldo from movimientos",null);
+        Cursor fila = bd.rawQuery("select sum(importe) as saldo from movimientos where concepto<>'CREDITO'",null);
         fila.moveToFirst();
         if (fila.getCount()>0) {
             float numero = Float.parseFloat(fila.getString(0));
@@ -57,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
             if ((numero >= 7000) && (numero <=15000)) {saldoactual.setTextColor(Color.rgb(200,200,50)); }
             if (numero < 7000) {saldoactual.setTextColor(Color.RED); }
         } else {saldoactual.setText("0.00");}
+        Cursor fila1 = bd.rawQuery("select sum(importe) from movimientos where tipomov='I'",null);
+        fila1.moveToFirst();
+        totIngresos.setText(fila1.getString(0));
+        Cursor fila2 = bd.rawQuery("select sum(importe) from movimientos where tipomov='E' and categoria<>'CREDITO'",null);
+        fila2.moveToFirst();
+        totEgresos.setText(fila2.getString(0));
+        Cursor fila3 = bd.rawQuery("select sum(importe) from movimientos where categoria = 'CREDITO'",null);
+        fila3.moveToFirst();
+        totTCred.setText(fila3.getString(0));
         bd.close();
     }
 }

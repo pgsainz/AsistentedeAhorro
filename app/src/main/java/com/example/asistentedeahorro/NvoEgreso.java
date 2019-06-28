@@ -67,7 +67,7 @@ public class NvoEgreso extends AppCompatActivity {
         recogerFecha.show();
     }
    public void grabaregreso(View view){
-       AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
+       AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro1",null,1);
        SQLiteDatabase db1 = admin.getWritableDatabase();
        String tipomov = "E";
        String concepto = fspinner2.getSelectedItem().toString();

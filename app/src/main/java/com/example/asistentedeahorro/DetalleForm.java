@@ -17,14 +17,10 @@ public class DetalleForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_form);
-        TextView mercadosmonto = (TextView) findViewById(R.id.mercadosmonto);
-        TextView alquilermonto = (TextView) findViewById(R.id.alquilermonto);
-        TextView transportemonto = (TextView) findViewById(R.id.transportemonto);
-        TextView impuestosmonto = (TextView) findViewById(R.id.impuestosmonto);
-        TextView otrosmonto = (TextView) findViewById(R.id.otrosmonto);
-        Tabla tabla = new Tabla(this, (TableLayout) findViewById(R.id.tabla));
-        tabla.agregarCabecera(R.array.cabecera_tabla);
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
+        TextView mercadosmonto = (TextView) findViewById(R.id.monto);
+        Tabla tabla = new Tabla(this, (TableLayout) findViewById(R.id.tablamov));
+        //tabla.agregarCabecera(R.array.cabecera_tabla);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro1",null,1);
         SQLiteDatabase db1=admin.getWritableDatabase();
         Cursor fila = db1.rawQuery("select * from movimientos order by fecha",null);
         int ii = fila.getCount();
@@ -48,15 +44,25 @@ public class DetalleForm extends AppCompatActivity {
         fila.close();
         Cursor fila1 = db1.rawQuery("select categoria,sum(importe*(-1)) as total from movimientos where tipomov='E' group by categoria",null);
         fila1.moveToFirst();
-        while(!fila1.isAfterLast()){
-            String texto1 = fila1.getString(0);
-            if (texto1 == "MERCADOS") {mercadosmonto.setText(fila1.getString(1));}
-            if (texto1 == "ALQUILER") {alquilermonto.setText(fila1.getString(1));}
-            if (texto1 == "TRANSPORTE") {transportemonto.setText(fila1.getString(1));}
-            if (texto1 == "IMPUESTOS") {impuestosmonto.setText(fila1.getString(1));}
-            if (texto1 =="OTROS") {otrosmonto.setText(fila1.getString(1));}
-            fila1.moveToNext();
+        Tabla sumario = new Tabla(this, (TableLayout) findViewById(R.id.sumario));
+        int ii2 = fila1.getCount();
+        if (ii2>0) {
+            fila1.moveToFirst();
+            for (int i = 0; i < ii2; i++) {
+                ArrayList<String> elementos = new ArrayList<String>();
+                elementos.add(fila1.getString(0));
+                elementos.add(fila1.getString(1));
+                sumario.agregarFilaTabla(elementos);
+                fila1.moveToNext();
+            }
+        } else {
+            ArrayList<String> elementos = new ArrayList<String>();
+            elementos.add("------------");
+            elementos.add("No hay datos");
+            elementos.add("------------");
+            sumario.agregarFilaTabla(elementos);
         }
+        fila1.close();
     }
     public void cancelar(View view){
         finish();
