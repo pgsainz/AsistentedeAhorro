@@ -11,7 +11,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE movimientos (tipomov text,concepto text,categoria text,fecha date,importe real)");
+        db.execSQL("CREATE TABLE movimientos(tipomov text,concepto text,categoria text,fecha date,importe real)");
     }
 
     @Override

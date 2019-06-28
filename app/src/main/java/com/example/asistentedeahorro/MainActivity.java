@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public void nvoIngresoClick(View view){
         Intent i = new Intent(this,NvoIngreso.class);
         startActivity(i);
+        this.onActivityReenter();
     }
     public void nvoEngresoClick(View view){
     Intent e = new Intent(this,NvoEgreso.class);
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     actualizaSaldo();
     }
     public void actualizaSaldo(){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro1",null,1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
         SQLiteDatabase bd = admin.getReadableDatabase();
         Cursor fila = bd.rawQuery("select sum(importe) as saldo from movimientos where concepto<>'CREDITO'",null);
         fila.moveToFirst();

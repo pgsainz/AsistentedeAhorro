@@ -20,7 +20,7 @@ public class DetalleForm extends AppCompatActivity {
         TextView mercadosmonto = (TextView) findViewById(R.id.monto);
         Tabla tabla = new Tabla(this, (TableLayout) findViewById(R.id.tablamov));
         //tabla.agregarCabecera(R.array.cabecera_tabla);
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro1",null,1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
         SQLiteDatabase db1=admin.getWritableDatabase();
         Cursor fila = db1.rawQuery("select * from movimientos order by fecha",null);
         int ii = fila.getCount();

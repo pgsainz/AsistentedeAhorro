@@ -65,7 +65,7 @@ public class NvoIngreso extends AppCompatActivity {
     }
     public void aceptar(View view){
     //realizo el alta del registro
-    AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro1",null,1);
+    AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
     SQLiteDatabase db1 = admin.getWritableDatabase();
     String tipomov = "I";
     String concepto = spinner1.getSelectedItem().toString();
