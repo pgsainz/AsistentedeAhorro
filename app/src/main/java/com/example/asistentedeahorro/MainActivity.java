@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     actualizaSaldo(10000);
     }
     public void btnDetalle(View view){
-    Intent d = new Intent(this,detalleform.class);
+    Intent d = new Intent(this,DetalleForm.class);
     startActivity(d);
     }
     public void actualizaSaldo(float numero){

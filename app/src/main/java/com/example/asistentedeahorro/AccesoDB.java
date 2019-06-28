@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AccesoDB extends SQLiteOpenHelper {
     public AccesoDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "datos", null, 3);
+        super(context, name, null, version);
     }
 
     @Override
@@ -17,10 +17,6 @@ public class AccesoDB extends SQLiteOpenHelper {
             "  concepto INTEGER DEFAULT NULL," +
             "  fecha TEXT DEFAULT NULL," +
             "  importe REAL DEFAULT NULL)");
-
-    db.execSQL("CREATE TABLE IF NOT EXISTS conceptos (" +
-            "idconcepto INTEGER PRIMARY KEY AUTOINCREMENT,"+
-            "nombre TEXT DEFAULT NULL)");
     }
 
     @Override

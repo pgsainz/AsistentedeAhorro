@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fechaeg"
+        android:id="@+id/fechaing"
         android:layout_width="194dp"
         android:layout_height="55dp"
         android:layout_marginStart="120dp"

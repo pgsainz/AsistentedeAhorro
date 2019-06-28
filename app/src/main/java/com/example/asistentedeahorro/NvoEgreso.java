@@ -1,7 +1,5 @@
 package com.example.asistentedeahorro;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
@@ -26,7 +26,7 @@ public class NvoEgreso extends AppCompatActivity {
         setContentView(R.layout.activity_nvo_egreso);
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
-        fechaeg = (TextView) findViewById(R.id.fechaeg);
+        fechaeg = (TextView) findViewById(R.id.fechaing);
         String[] opciones={"Alquiler","Mercados","Transporte","Impuestos","Servicios","Esparcimiento","Otros"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opciones);
         spinner1.setAdapter(adapter);
