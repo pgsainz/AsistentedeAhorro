@@ -40,14 +40,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
                 </TableLayout>
             </LinearLayout>
         </ScrollView>
@@ -65,28 +57,97 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TableLayout
+            android:id="@+id/sumario"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:contextClickable="false">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/fMercados"
+                    android:layout_width="195dp"
+                    android:layout_height="50dp"
+                    tools:text="Mercados" />
+
+                <TextView
+                    android:id="@+id/mercadosmonto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"
+                    tools:text="0.00" />
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/fAlquiler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Alquiler" />
+
+                <TextView
+                    android:id="@+id/alquilermonto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00" />
+
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/fTransporte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Transporte" />
+
+                <TextView
+                    android:id="@+id/transportemonto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00" />
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/fImpuestos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Impuestos" />
+
+                <TextView
+                    android:id="@+id/impuestosmonto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00" />
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/fOtros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Otros" />
+
+                <TextView
+                    android:id="@+id/otrosmonto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00" />
+            </TableRow>
         </TableLayout>
     </LinearLayout>
 
@@ -96,7 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="45dp"
+        android:onClick="cancelar"
         android:text="VOLVER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

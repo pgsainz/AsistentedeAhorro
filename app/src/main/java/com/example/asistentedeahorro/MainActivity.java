@@ -1,6 +1,8 @@
 package com.example.asistentedeahorro;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -28,27 +30,34 @@ public class MainActivity extends AppCompatActivity {
         Date todayDate = new Date();
         String thisDate = currentDate.format(todayDate);
         fechasaldo.setText(thisDate);
-        actualizaSaldo(0);
+        actualizaSaldo();
     }
     public void nvoIngresoClick(View view){
         Intent i = new Intent(this,NvoIngreso.class);
         startActivity(i);
-        actualizaSaldo(20000);
     }
     public void nvoEngresoClick(View view){
     Intent e = new Intent(this,NvoEgreso.class);
     startActivity(e);
-    actualizaSaldo(10000);
     }
     public void btnDetalle(View view){
     Intent d = new Intent(this,DetalleForm.class);
     startActivity(d);
     }
-    public void actualizaSaldo(float numero){
-        DecimalFormat formato = new DecimalFormat("¤ #######0.00");
-        if (numero > 15000) {saldoactual.setTextColor(Color.GREEN); }
-        if ((numero >= 7000) && (numero <=15000)) {saldoactual.setTextColor(Color.YELLOW); }
-        if (numero < 7000) {saldoactual.setTextColor(Color.RED); }
-        saldoactual.setText(formato.format(numero));
+    public void actualizaSaldo(){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
+        SQLiteDatabase bd = admin.getReadableDatabase();
+        Cursor fila = bd.rawQuery("select sum(importe) as saldo from movimientos",null);
+        fila.moveToFirst();
+        if (fila.getCount()>0) {
+            float numero = Float.parseFloat(fila.getString(0));
+            DecimalFormat formato = new DecimalFormat("¤ #######0.00");
+            saldoactual.setText(formato.format(numero));
+            if (numero > 15000) {saldoactual.setTextColor(Color.GREEN); }
+            if ((numero >= 7000) && (numero <=15000)) {saldoactual.setTextColor(Color.rgb(200,200,50)); }
+            if (numero < 7000) {saldoactual.setTextColor(Color.RED); }
+        } else {saldoactual.setText("0.00");}
+        bd.close();
+
     }
 }

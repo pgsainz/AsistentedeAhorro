@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +17,7 @@ import java.util.Calendar;
 
 public class NvoIngreso extends AppCompatActivity {
     private Spinner spinner1;
-    private TextView fechaing;
-    private EditText monto;
+    private EditText fechaing,monto;
     //Calendario para obtener fecha & hora
     public final Calendar c = Calendar.getInstance();
     final int mes = c.get(Calendar.MONTH);
@@ -30,8 +28,8 @@ public class NvoIngreso extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nvo_ingreso);
         spinner1 = (Spinner) findViewById(R.id.spinner1);
-        fechaing = (TextView) findViewById(R.id.fechaing);
-        String[] opciones={"Sueldo","Préstamo","Otros"};
+        fechaing = (EditText) findViewById(R.id.fechaeg);
+        String[] opciones={"SUELDO","PRESTAMO","OTROS"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opciones);
         spinner1.setAdapter(adapter);
         monto = (EditText) findViewById(R.id.monto);
@@ -39,9 +37,11 @@ public class NvoIngreso extends AppCompatActivity {
     public void cancelarclick(View view){
         finish();
     }
+
     public void elijefecha(View view){
     obtenerFecha();
     }
+
     private void obtenerFecha(){
         DatePickerDialog recogerFecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -65,19 +65,27 @@ public class NvoIngreso extends AppCompatActivity {
     }
     public void aceptar(View view){
     //realizo el alta del registro
-    AccesoDB admin = new AccesoDB(this,"movimientos",null,3);
+    AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
     SQLiteDatabase db1 = admin.getWritableDatabase();
     String tipomov = "I";
     String concepto = spinner1.getSelectedItem().toString();
+    String categoria = "";
     String fecha = fechaing.getText().toString();
-    Float importe = Float.parseFloat(monto.getText().toString());
-    ContentValues registro = new ContentValues();
-    registro.put("tipomov",tipomov);
-    registro.put("concepto",concepto);
-    registro.put("fecha",fecha);
-    registro.put("importe",importe);
-    db1.insert("movimientos",null,registro);
-    db1.close();
-    Toast.makeText(this,"Alta Grabada",Toast.LENGTH_SHORT).show();
+    String importe = monto.getText().toString();
+    if (!fecha.isEmpty() && !importe.isEmpty() && !concepto.isEmpty()) {
+        ContentValues registro = new ContentValues();
+        registro.put("tipomov", tipomov);
+        registro.put("concepto", concepto);
+        registro.put("categoria",categoria);
+        registro.put("fecha", fecha);
+        registro.put("importe", importe);
+        db1.insert("movimientos", null, registro);
+        Toast.makeText(this, "Ingreso Grabado", Toast.LENGTH_SHORT).show();
+        db1.close();
+        spinner1.setSelection(0);
+        fechaing.setText("");
+        monto.setText("");
+        }
+      else {Toast.makeText(this, "Faltan datos reintente.", Toast.LENGTH_SHORT).show();}
     }
 }

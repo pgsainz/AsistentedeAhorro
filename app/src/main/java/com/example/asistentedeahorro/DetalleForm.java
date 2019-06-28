@@ -3,6 +3,7 @@ package com.example.asistentedeahorro;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TableLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,27 +18,30 @@ public class DetalleForm extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_form);
         Tabla tabla = new Tabla(this, (TableLayout) findViewById(R.id.tabla));
         tabla.agregarCabecera(R.array.cabecera_tabla);
-        AccesoDB admin = new AccesoDB(this,"datos",null,3);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
         SQLiteDatabase db1=admin.getWritableDatabase();
         Cursor fila = db1.rawQuery("select * from movimientos order by fecha",null);
         int ii = fila.getCount();
-        ArrayList<String> elementos = new ArrayList<String>();
         if (ii>0) {
             fila.moveToFirst();
             for (int i = 0; i < ii; i++) {
-                elementos.add(fila.getString(1));
-                elementos.add(fila.getString(2));
-                elementos.add(fila.getString(2));
+                ArrayList<String> elementos = new ArrayList<String>();
+                elementos.add(fila.getString(3));
+                elementos.add(fila.getString(0));
+                elementos.add(fila.getString(4));
                 tabla.agregarFilaTabla(elementos);
                 fila.moveToNext();
             }
         } else {
+            ArrayList<String> elementos = new ArrayList<String>();
+            elementos.add("------------");
             elementos.add("No hay datos");
+            elementos.add("------------");
             tabla.agregarFilaTabla(elementos);
         }
         fila.close();
     }
-    public void cancelar(){
+    public void cancelar(View view){
         finish();
     }
 }
