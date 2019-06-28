@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public void nvoIngresoClick(View view){
         Intent i = new Intent(this,NvoIngreso.class);
         startActivity(i);
-        this.onActivityReenter();
+        //this.onActivityReenter();
     }
     public void nvoEngresoClick(View view){
     Intent e = new Intent(this,NvoEgreso.class);
