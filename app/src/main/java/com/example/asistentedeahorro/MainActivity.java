@@ -58,6 +58,5 @@ public class MainActivity extends AppCompatActivity {
             if (numero < 7000) {saldoactual.setTextColor(Color.RED); }
         } else {saldoactual.setText("0.00");}
         bd.close();
-
     }
 }
