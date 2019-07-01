@@ -71,6 +71,7 @@ public class NvoEgreso extends AppCompatActivity {
        SQLiteDatabase db1 = admin.getWritableDatabase();
        String tipomov = "E";
        String concepto = fspinner2.getSelectedItem().toString();
+       if (concepto == "CREDITO") {tipomov = "C";}
        String categoria = fspinner1.getSelectedItem().toString();
        String fecha = ffechaeg.getText().toString();
        String importe = String.valueOf(Float.parseFloat(fmonto.getText().toString())*(-1));

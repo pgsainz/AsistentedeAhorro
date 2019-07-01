@@ -35,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
     public void nvoIngresoClick(View view){
         Intent i = new Intent(this,NvoIngreso.class);
         startActivity(i);
-        //this.onActivityReenter();
+        actualizaSaldo();
     }
     public void nvoEngresoClick(View view){
     Intent e = new Intent(this,NvoEgreso.class);
     startActivity(e);
+    actualizaSaldo();
     }
     public void btnDetalle(View view){
     Intent d = new Intent(this,DetalleForm.class);
@@ -47,27 +48,39 @@ public class MainActivity extends AppCompatActivity {
     actualizaSaldo();
     }
     public void actualizaSaldo(){
+        DecimalFormat formato = new DecimalFormat("¤ #######0.00");
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
-        SQLiteDatabase bd = admin.getReadableDatabase();
-        Cursor fila = bd.rawQuery("select sum(importe) as saldo from movimientos where concepto<>'CREDITO'",null);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+        Cursor fila = bd.rawQuery("select sum(importe) as saldo from movimientos where (tipomov='I' or tipomov='E')",null);
         fila.moveToFirst();
         if (fila.getCount()>0) {
-            float numero = Float.parseFloat(fila.getString(0));
-            DecimalFormat formato = new DecimalFormat("¤ #######0.00");
+            float numero = fila.getFloat(0);
             saldoactual.setText(formato.format(numero));
             if (numero > 15000) {saldoactual.setTextColor(Color.GREEN); }
             if ((numero >= 7000) && (numero <=15000)) {saldoactual.setTextColor(Color.rgb(200,200,50)); }
             if (numero < 7000) {saldoactual.setTextColor(Color.RED); }
-        } else {saldoactual.setText("0.00");}
-        Cursor fila1 = bd.rawQuery("select sum(importe) from movimientos where tipomov='I'",null);
-        fila1.moveToFirst();
-        totIngresos.setText(fila1.getString(0));
-        Cursor fila2 = bd.rawQuery("select sum(importe) from movimientos where tipomov='E' and categoria<>'CREDITO'",null);
-        fila2.moveToFirst();
-        totEgresos.setText(fila2.getString(0));
-        Cursor fila3 = bd.rawQuery("select sum(importe) from movimientos where categoria = 'CREDITO'",null);
-        fila3.moveToFirst();
-        totTCred.setText(fila3.getString(0));
-        bd.close();
+        } else {saldoactual.setText("0.00");
+                saldoactual.setTextColor(Color.RED);}
+        fila.close();
+        fila = bd.rawQuery("select tipomov,sum(importe) from movimientos group by tipomov order by tipomov",null);
+        fila.moveToFirst();
+        String tipoI = "I";
+        String tipoE = "E";
+        String tipoC = "C";
+        while (!fila.isAfterLast())
+        {
+            String tmptipomov = fila.getString(0);
+            float tmptotal = fila.getFloat(1);
+            if (tmptipomov.compareTo(tipoI) == 0) {totIngresos.setText(formato.format(tmptotal));}
+            if (tmptipomov.compareTo(tipoE) == 0) {totEgresos.setText(formato.format(tmptotal*(-1)));}
+            if (tmptipomov.compareTo(tipoC) == 0) {totTCred.setText(formato.format(tmptotal*(-1)));}
+            fila.moveToNext();
+        }
+    }
+    public void listartodo(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
+        SQLiteDatabase bd = admin.getReadableDatabase();
+        bd.delete("movimientos","tipomov=tipomov",null);
+        actualizaSaldo();
     }
 }
