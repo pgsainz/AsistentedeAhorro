@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="360dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,15 +55,15 @@
                         android:layout_height="wrap_content"
                         android:background="#00BCD4"
                         android:text="Tipo"
-                        android:textAlignment="textStart" />
+                        android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="100dp"
+                        android:layout_width="144dp"
                         android:layout_height="wrap_content"
                         android:background="#00BCD4"
                         android:text="Monto"
-                        android:textAlignment="textEnd" />
+                        android:textAlignment="center" />
                 </TableRow>
 
             </TableLayout>
@@ -73,10 +73,10 @@
 
     <LinearLayout
         android:id="@+id/linear2"
-        android:layout_width="296dp"
+        android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="320dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
@@ -110,13 +110,14 @@
                             android:layout_width="195dp"
                             android:layout_height="20dp"
                             android:background="#CDDC39"
+                            android:text="CATEGORIA"
                             android:textAlignment="center"
                             android:verticalScrollbarPosition="right"
                             tools:text="CATEGORIA" />
 
                         <TextView
                             android:id="@+id/monto"
-                            android:layout_width="75dp"
+                            android:layout_width="207dp"
                             android:layout_height="20dp"
                             android:background="#CDDC39"
                             android:text="MONTO"
