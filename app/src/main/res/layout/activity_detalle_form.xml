@@ -25,6 +25,40 @@
             android:layout_height="wrap_content"
             android:text="DETALLE" />
 
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:id="@+id/encabezado"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="85dp"
+                    android:layout_height="20dp"
+                    android:background="#00BCD4"
+                    android:text="Fecha" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="130dp"
+                    android:layout_height="20dp"
+                    android:background="#00BCD4"
+                    android:text="Tipo"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:background="#00BCD4"
+                    android:text="Monto"
+                    android:textAlignment="center" />
+            </TableRow>
+        </TableLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -38,34 +72,24 @@
                 android:layout_height="wrap_content">
 
                 <TableRow
-                    android:id="@+id/encabezado"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/textView10"
+                        android:layout_width="85dp"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="130dp"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:id="@+id/textView8"
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:background="#00BCD4"
-                        android:text="Fecha" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:background="#00BCD4"
-                        android:text="Tipo"
-                        android:textAlignment="center" />
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="144dp"
-                        android:layout_height="wrap_content"
-                        android:background="#00BCD4"
-                        android:text="Monto"
-                        android:textAlignment="center" />
+                        android:layout_height="20dp" />
                 </TableRow>
-
             </TableLayout>
         </ScrollView>
 
@@ -117,7 +141,7 @@
 
                         <TextView
                             android:id="@+id/monto"
-                            android:layout_width="207dp"
+                            android:layout_width="100dp"
                             android:layout_height="20dp"
                             android:background="#CDDC39"
                             android:text="MONTO"

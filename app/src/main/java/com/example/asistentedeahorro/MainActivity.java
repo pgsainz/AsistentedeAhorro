@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         while (!fila.isAfterLast())
         {
             String tmptipomov = fila.getString(0);
-            float tmptotal = fila.getFloat(1);
+            float tmptotal = 0f;
+            tmptotal = fila.getFloat(1);
             if (tmptipomov.compareTo(tipoI) == 0) {totIngresos.setText(formato.format(tmptotal));}
             if (tmptipomov.compareTo(tipoE) == 0) {totEgresos.setText(formato.format(tmptotal*(-1)));}
             if (tmptipomov.compareTo(tipoC) == 0) {totTCred.setText(formato.format(tmptotal*(-1)));}

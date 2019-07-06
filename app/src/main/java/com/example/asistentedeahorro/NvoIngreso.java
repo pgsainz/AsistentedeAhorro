@@ -65,12 +65,13 @@ public class NvoIngreso extends AppCompatActivity {
     }
     public void aceptar(View view){
     //realizo el alta del registro
+    Fechas ff = new Fechas(this);
     AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
     SQLiteDatabase db1 = admin.getWritableDatabase();
     String tipomov = "I";
     String concepto = spinner1.getSelectedItem().toString();
     String categoria = "";
-    String fecha = fechaing.getText().toString();
+    String fecha = ff.fechamsqlite(fechaing.getText().toString());
     String importe = monto.getText().toString();
     if (!fecha.isEmpty() && !importe.isEmpty() && !concepto.isEmpty()) {
         ContentValues registro = new ContentValues();

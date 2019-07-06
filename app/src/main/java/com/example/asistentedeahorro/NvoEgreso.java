@@ -67,13 +67,14 @@ public class NvoEgreso extends AppCompatActivity {
         recogerFecha.show();
     }
    public void grabaregreso(View view){
+       Fechas ff = new Fechas(this);
        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"dbahorro",null,1);
        SQLiteDatabase db1 = admin.getWritableDatabase();
        String tipomov = "E";
        String concepto = fspinner2.getSelectedItem().toString();
        if (concepto == "CREDITO") {tipomov = "C";}
        String categoria = fspinner1.getSelectedItem().toString();
-       String fecha = ffechaeg.getText().toString();
+       String fecha = ff.fechamsqlite(ffechaeg.getText().toString());
        String importe = String.valueOf(Float.parseFloat(fmonto.getText().toString())*(-1));
        if (!fecha.isEmpty() && !importe.isEmpty() && !concepto.isEmpty() && !categoria.isEmpty()) {
            ContentValues registro = new ContentValues();
