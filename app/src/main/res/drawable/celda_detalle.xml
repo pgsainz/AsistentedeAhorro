@@ -6,12 +6,12 @@
         android:color="@color/negro" />
     <!--Configuración del fondo-->
     <solid
-        android:color="@color/dorado"/>
+        android:color="@color/azulclaro"/>
     <padding
-        android:bottom="5dp"
+        android:bottom="3dp"
         android:left="5dp"
         android:right="5dp"
-        android:top="5dp" />
+        android:top="3dp" />
     <corners
         android:radius="7dp"
         />

@@ -37,23 +37,23 @@
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="85dp"
-                    android:layout_height="20dp"
-                    android:background="#00BCD4"
+                    android:layout_height="30dp"
+                    android:background="@drawable/tabla_celda"
                     android:text="Fecha" />
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="130dp"
-                    android:layout_height="20dp"
-                    android:background="#00BCD4"
+                    android:layout_height="30dp"
+                    android:background="@drawable/tabla_celda"
                     android:text="Tipo"
                     android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:background="#00BCD4"
+                    android:layout_height="30dp"
+                    android:background="@drawable/tabla_celda"
                     android:text="Monto"
                     android:textAlignment="center" />
             </TableRow>

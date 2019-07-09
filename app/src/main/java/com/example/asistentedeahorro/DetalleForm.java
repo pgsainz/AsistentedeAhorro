@@ -40,6 +40,7 @@ public class DetalleForm extends AppCompatActivity {
             col1.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
             col1.setTextColor(Color.BLACK);
             col1.setPadding(20,10,20,10);
+            col1.setBackgroundResource(R.drawable.celda_detalle);
             col1.setWidth(70);
             col1.setTop(1);
             col1.setBottom(1);
@@ -50,6 +51,7 @@ public class DetalleForm extends AppCompatActivity {
             col2.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             col2.setTextColor(Color.BLACK);
             col2.setPadding(20,10,20,10);
+            col2.setBackgroundResource(R.drawable.celda_detalle);
             col2.setText(fila.getString(1));
             col2.setWidth(100);
             ncol ++;
@@ -59,6 +61,7 @@ public class DetalleForm extends AppCompatActivity {
             col3.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
             if (importe >= 0) {col3.setTextColor(Color.BLACK);} else {col3.setTextColor(Color.RED);}
             col3.setPadding(10,10,10,10);
+            col3.setBackgroundResource(R.drawable.celda_detalle);
             col3.setText(formato.format(importe));
             col3.setWidth(50);
             ncol ++;
