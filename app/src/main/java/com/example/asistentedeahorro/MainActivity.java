@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     //inicializo los elementos al arrancar
     private TextView fechasaldo,saldoactual,totIngresos,totEgresos,totTCred;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+        {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fechasaldo = (TextView) findViewById(R.id.fechasaldo);
@@ -31,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         String thisDate = currentDate.format(todayDate);
         fechasaldo.setText(thisDate);
         actualizaSaldo();
+        }
+    protected void onResume()
+    {
+    super.onResume();
+    actualizaSaldo();
     }
     public void nvoIngresoClick(View view){
         Intent i = new Intent(this,NvoIngreso.class);
