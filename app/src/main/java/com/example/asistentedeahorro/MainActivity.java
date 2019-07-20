@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         String tipoI = "I";
         String tipoE = "E";
         String tipoC = "C";
+        totIngresos.setText("0.00");
+        totEgresos.setText("0.00");
+        totTCred.setText("0.00");
         while (!fila.isAfterLast())
         {
             String tmptipomov = fila.getString(0);
