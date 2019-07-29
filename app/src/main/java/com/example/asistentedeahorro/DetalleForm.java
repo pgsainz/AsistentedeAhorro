@@ -77,10 +77,6 @@ public class DetalleForm extends AppCompatActivity {
         fila1.moveToFirst();
         nfila = 0; ncol = 0;
         while (!fila1.isAfterLast()) {
-               /* ArrayList<String> elementos = new ArrayList<String>();
-                elementos.add(fila1.getString(0));
-                elementos.add(fila1.getString(1));
-                sumario.agregarFilaTabla(elementos);*/
                fila1t = new TableRow(this);
                fila1t.setId(nfila);
                fila1t.setLeftTopRightBottom(1,1,1,1);
